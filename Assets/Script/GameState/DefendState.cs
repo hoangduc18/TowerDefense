@@ -1,18 +1,24 @@
-using Assets.Script.GameState;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using UnityEngine;
 
-public class DefendState : MonoBehaviour, IGameState
+namespace Assets.Script.GameState
 {
-    private GameController _gameController;
-    public void Handle(GameController gameController)
+    public class DefendState : GamePlayBaseState
     {
-        if (!_gameController)
+        public override void Handle(GamePlayStateController controller)
         {
-            _gameController = gameController;
+            if (controller.PlayerHealth <= 0)
+            {
+                controller.SwitchCurrentState(controller.GameOverState);
+            }
+            if(controller.isWaveEnd)
+            {
+                controller.SwitchCurrentState(controller.ReadyState);
+            }
         }
-        _gameController.IsBuilding = false;
-        _gameController.IsDefending = true;
     }
 }

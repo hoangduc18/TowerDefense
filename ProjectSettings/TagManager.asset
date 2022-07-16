@@ -41,3 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Creep
+    uniqueID: 2518039465
+    locked: 0
