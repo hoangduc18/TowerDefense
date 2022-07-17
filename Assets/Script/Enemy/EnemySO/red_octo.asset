@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: red_octo
   m_EditorClassIdentifier: 
   heath: 0
-  speed: 0
+  speed: 3
+  goldReward: 0
+  point: 0

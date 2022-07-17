@@ -5,7 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="New Enemy", menuName ="Enemy")]
 public class BaseEnemySO : ScriptableObject
 {
-    public int heath;
+    public int health;
     public float speed;
-    public float reward;
+    public float goldReward;
+    public int point;
 }

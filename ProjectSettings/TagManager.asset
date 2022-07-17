@@ -44,3 +44,12 @@ TagManager:
   - name: Creep
     uniqueID: 2518039465
     locked: 0
+  - name: TurretBase
+    uniqueID: 3464440371
+    locked: 0
+  - name: Turret
+    uniqueID: 3274458833
+    locked: 0
+  - name: Bullet
+    uniqueID: 3712203845
+    locked: 0

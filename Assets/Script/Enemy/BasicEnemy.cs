@@ -9,7 +9,7 @@ public class BasicEnemy : MonoBehaviour,ICloneable
 
 
     private int _heath;
-private List<Transform> _listCheckpoint;
+    private List<Transform> _listCheckpoint;
 
     public List<Transform> ListCheckpoint { set { _listCheckpoint = value; } }
     public object Clone()
@@ -20,7 +20,7 @@ private List<Transform> _listCheckpoint;
     // Start is called before the first frame update
     void Start()
     {
-        _heath = enemyInfo.heath;
+        _heath = enemyInfo.health;
     }
 
     // Update is called once per frame

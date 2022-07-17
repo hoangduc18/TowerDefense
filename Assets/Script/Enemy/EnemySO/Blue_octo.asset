@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b75de81b99a97634ba973c3213b97729, type: 3}
   m_Name: Blue_octo
   m_EditorClassIdentifier: 
-  heath: 10
+  health: 10
   speed: 10
-  reward: 0
+  goldReward: 50
+  point: 10
