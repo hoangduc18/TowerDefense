@@ -2,23 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ObjectPool))]
 public class TurretShoot : MonoBehaviour
 {
     public List<Transform> bulletSpawns;
     public GameObject bulletPrefab;
-    public float cooldown = 1.0f;
+    public float cooldown = 0.2f;
     private bool canShoot = true;
-
-    //private Collider2D[] enemyColliders;
     private float currentCooldown = 0.0f;
-    // Start is called before the first frame update
-     void Awake()
+
+    private ObjectPool bulletPool;
+    [SerializeField]
+    private int bulletPoolCount = 10;
+
+    private void Awake()
     {
-        //GetComponentInChildren<TurretShoot>();
+        bulletPool = GetComponent<ObjectPool>();
     }
+    // Start is called before the first frame update
     void Start()
     {
-        
+        bulletPool.Initialize(bulletPrefab, bulletPoolCount);
     }
 
     // Update is called once per frame
@@ -34,24 +38,26 @@ public class TurretShoot : MonoBehaviour
         }
         else
         {
-            Shoot();
+            if (Input.GetMouseButtonDown(0))
+            {
+                Shoot();
+            }
         }
     }
 
     public void Shoot()
     {
-        if (canShoot)
-        {
-            canShoot = false;
-            currentCooldown = cooldown;
+        canShoot = false;
+        currentCooldown = cooldown;
 
-            foreach (var bullet in bulletSpawns)
-            {
-                GameObject bulletObject = Instantiate(bulletPrefab);
-                bulletObject.transform.position = bullet.position;
-                bulletObject.transform.localRotation = bullet.rotation;
-                bulletObject.GetComponent<Bullet>().Initialize();
-            }
+        foreach (var bullet in bulletSpawns)
+        {
+            //GameObject bulletObject = Instantiate(bulletPrefab);
+            GameObject bulletObject = bulletPool.CreateGameObject();
+            bulletObject.transform.position = bullet.position;
+            bulletObject.transform.localRotation = bullet.rotation;
+            bulletObject.GetComponent<Bullet>().Initialize();
         }
+        
     }
 }
