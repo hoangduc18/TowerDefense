@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class GamePlayStateController : MonoBehaviour
 {
     private GamePlayBaseState currentState;
+    public GamePlayBaseState CurrentState { get { return currentState; } }
     public ReadyState ReadyState = new ReadyState();
     public DefendState DefendState = new DefendState();
     public GameOverState GameOverState = new GameOverState();

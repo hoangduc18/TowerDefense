@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [System.Serializable]
+    public class Wave
+    {
+        public int count;
+        public GameObject enemies;
+        public float rate;
+    }
+
     public List<BasicEnemy> enemySpawns;
     public BasicEnemy enemy;
-    public List<Transform> targets;
+    public Transform[] targets;
+    public Wave[] wave;   
     void Start()
     {
-       var _enemy = Instantiate<BasicEnemy>(enemy,transform);
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 8; i++)
         {
-            BasicEnemy _clone = _enemy.Clone() as BasicEnemy;
-            Instantiate(_clone, transform);
-            _clone.ListCheckpoint = targets; 
+            BasicEnemy _clone = Instantiate<BasicEnemy>(enemy.Clone() as BasicEnemy);
+            _clone.Waypoint = targets; 
             enemySpawns.Add(_clone);
         }
     }

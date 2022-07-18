@@ -1,3 +1,4 @@
+using Assets.Script.GameState;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,16 +7,20 @@ public class Aiming : MonoBehaviour
 {
     [SerializeField]
     private float rotationSpeed = 150;
+    private GamePlayStateController state;
     // Start is called before the first frame update
     void Start()
     {
-        
+        state = GameObject.Find("GameManager").gameObject.GetComponent<GamePlayStateController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Aim(Input.mousePosition);
+        if (state.CurrentState == state.DefendState)
+        {
+            Aim(Input.mousePosition);
+        }
     }
 
     public void Aim(Vector2 inputMousePosition)

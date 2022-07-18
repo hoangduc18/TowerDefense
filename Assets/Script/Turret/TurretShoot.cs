@@ -1,3 +1,4 @@
+using Assets.Script.GameState;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,8 +14,8 @@ public class TurretShoot : MonoBehaviour
 
     private ObjectPool bulletPool;
     [SerializeField]
-    private int bulletPoolCount = 10;
-
+    private int bulletPoolCount = 5;
+    private GamePlayStateController state;
     private void Awake()
     {
         bulletPool = GetComponent<ObjectPool>();
@@ -23,10 +24,19 @@ public class TurretShoot : MonoBehaviour
     void Start()
     {
         bulletPool.Initialize(bulletPrefab, bulletPoolCount);
+        state = GameObject.Find("GameManager").gameObject.GetComponent<GamePlayStateController>();
     }
 
     // Update is called once per frame
     void Update()
+    {
+        if (state.CurrentState == state.DefendState)
+        {
+            HandleShoot();
+        }
+    }
+
+    public void HandleShoot()
     {
         if (!canShoot)
         {
